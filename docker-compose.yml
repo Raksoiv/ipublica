@@ -1,0 +1,7 @@
+version: '3'
+services:
+  scraper:
+    image: ipublica-scraper
+    build:
+      context: ./
+    command: scrapyd
