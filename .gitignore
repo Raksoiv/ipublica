@@ -1,4 +1,6 @@
 .env
 .idea
 *.pyc
+*.db
+data/
 __pycache__
