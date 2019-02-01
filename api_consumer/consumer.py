@@ -45,7 +45,10 @@ def parse_bidding(response, bidding):
         json_response = json.loads(response.text)
     except json.decoder.JSONDecodeError:
         return None
-    json_bidding = json_response['Listado'][0]
+    if json_response['Cantidad'] > 0:
+        json_bidding = json_response['Listado'][0]
+    else:
+        json_bidding = {}
     bidding.finished_ts = datetime.datetime.now()
     bidding.save()
     return json_bidding
@@ -89,10 +92,11 @@ def main(start_date):
                 continue
             response = request_api(codigo=biddings[i].bidding_id)
             json_bidding = parse_bidding(response, biddings[i])
-            if json_bidding:
-                with open(filename, 'a') as fo:
-                    fo.write(json.dumps(json_bidding))
-                    fo.write('\n')
+            if json_bidding is not None:
+                if json_bidding != {}:
+                    with open(filename, 'a') as fo:
+                        fo.write(json.dumps(json_bidding))
+                        fo.write('\n')
                 i += 1
 
 
