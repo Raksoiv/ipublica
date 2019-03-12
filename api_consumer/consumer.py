@@ -91,6 +91,8 @@ def main(start_date):
                 i += 1
                 continue
             response = request_api(codigo=biddings[i].bidding_id)
+            if not response:
+                continue
             json_bidding = parse_bidding(response, biddings[i])
             if json_bidding is not None:
                 if json_bidding != {}:
