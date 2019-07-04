@@ -3,4 +3,7 @@
 *.pyc
 *.db
 data/
+esdata/
+licitaciones/
+neodata/
 __pycache__
