@@ -1,0 +1,622 @@
+{
+  "mappings": {
+    "properties": {
+      "Adjudicacion": {
+        "properties": {
+          "Fecha": {
+            "type": "date"
+          },
+          "Numero": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "NumeroOferentes": {
+            "type": "long"
+          },
+          "Tipo": {
+            "type": "long"
+          },
+          "UrlActa": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          }
+        }
+      },
+      "CantidadReclamos": {
+        "type": "long"
+      },
+      "CodigoEstado": {
+        "type": "long"
+      },
+      "CodigoExterno": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "CodigoTipo": {
+        "type": "long"
+      },
+      "Comprador": {
+        "properties": {
+          "CargoUsuario": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CodigoOrganismo": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CodigoUnidad": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "CodigoUsuario": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "ComunaUnidad": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "DireccionUnidad": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "NombreOrganismo": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "NombreUnidad": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "NombreUsuario": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "RegionUnidad": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "RutUnidad": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "RutUsuario": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          }
+        }
+      },
+      "Contrato": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "Descripcion": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "DiasCierreLicitacion": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "DireccionEntrega": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "DireccionVisita": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "EmailResponsableContrato": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "EmailResponsablePago": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "EsBaseTipo": {
+        "type": "long"
+      },
+      "EsRenovable": {
+        "type": "long"
+      },
+      "Estado": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "EstadoEtapas": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "EstadoPublicidadOfertas": {
+        "type": "long"
+      },
+      "Estimacion": {
+        "type": "long"
+      },
+      "Etapas": {
+        "type": "long"
+      },
+      "ExtensionPlazo": {
+        "type": "long"
+      },
+      "Fechas": {
+        "properties": {
+          "FechaActoAperturaEconomica": {
+            "type": "date"
+          },
+          "FechaActoAperturaTecnica": {
+            "type": "date"
+          },
+          "FechaAdjudicacion": {
+            "type": "date"
+          },
+          "FechaCierre": {
+            "type": "date"
+          },
+          "FechaCreacion": {
+            "type": "date"
+          },
+          "FechaEstimadaAdjudicacion": {
+            "type": "date"
+          },
+          "FechaEstimadaFirma": {
+            "type": "date"
+          },
+          "FechaFinal": {
+            "type": "date"
+          },
+          "FechaInicio": {
+            "type": "date"
+          },
+          "FechaPubRespuestas": {
+            "type": "date"
+          },
+          "FechaPublicacion": {
+            "type": "date"
+          },
+          "FechaSoporteFisico": {
+            "type": "date"
+          },
+          "FechaTiempoEvaluacion": {
+            "type": "date"
+          },
+          "FechasUsuario": {
+            "type": "date"
+          }
+        }
+      },
+      "FonoResponsableContrato": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "FuenteFinanciamiento": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "Informada": {
+        "type": "long"
+      },
+      "Items": {
+        "properties": {
+          "Cantidad": {
+            "type": "long"
+          },
+          "Listado": {
+            "type": "nested",
+            "properties": {
+              "Adjudicacion": {
+                "properties": {
+                  "Cantidad": {
+                    "type": "float"
+                  },
+                  "MontoUnitario": {
+                    "type": "float"
+                  },
+                  "NombreProveedor": {
+                    "type": "text",
+                    "fields": {
+                      "keyword": {
+                        "type": "keyword",
+                        "ignore_above": 256
+                      }
+                    }
+                  },
+                  "RutProveedor": {
+                    "type": "text",
+                    "fields": {
+                      "keyword": {
+                        "type": "keyword",
+                        "ignore_above": 256
+                      }
+                    }
+                  }
+                }
+              },
+              "Cantidad": {
+                "type": "float"
+              },
+              "Categoria": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              },
+              "CodigoCategoria": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              },
+              "CodigoProducto": {
+                "type": "long"
+              },
+              "Correlativo": {
+                "type": "long"
+              },
+              "Descripcion": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              },
+              "NombreProducto": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              },
+              "UnidadMedida": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "JustificacionMontoEstimado": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "JustificacionPublicidad": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "Modalidad": {
+        "type": "long"
+      },
+      "Moneda": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "MontoEstimado": {
+        "type": "float"
+      },
+      "Nombre": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "NombreResponsableContrato": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "NombreResponsablePago": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "Obras": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "PeriodoTiempoRenovacion": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "ProhibicionContratacion": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "SubContratacion": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "Tiempo": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "TiempoDuracionContrato": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "Tipo": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "TipoConvocatoria": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "TipoDuracionContrato": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "TipoPago": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "TomaRazon": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "UnidadTiempo": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "UnidadTiempoContratoLicitacion": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "UnidadTiempoDuracionContrato": {
+        "type": "long"
+      },
+      "UnidadTiempoEvaluacion": {
+        "type": "long"
+      },
+      "ValorTiempoRenovacion": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "VisibilidadMonto": {
+        "type": "long"
+      }
+    }
+  }
+}

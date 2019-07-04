@@ -1,7 +1,29 @@
 version: '3'
 services:
-  scraper:
-    image: ipublica-scraper
-    build:
-      context: ./
-    command: scrapyd
+  elastic:
+    image: elasticsearch:7.1.0
+    ports:
+      - 9200:9200
+      - 9300:9300
+    environment:
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    volumes:
+      - ./esdata:/usr/share/elasticsearch/data
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.1.0
+    environment:
+      ELASTICSEARCH_HOSTS: http://elastic:9200
+      XPACK_SECURITY_ENABLED: 'false'
+    ports:
+      - 5601:5601
+  neo4j:
+    image: neo4j
+    volumes:
+      - ./:/src
+      - ./neodata:/data
+    ports:
+      - 7474:7474
+      - 7687:7687
+    environment:
+      - NEO4J_AUTH=neo4j/test
