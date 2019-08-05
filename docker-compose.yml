@@ -10,13 +10,6 @@ services:
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     volumes:
       - ./esdata:/usr/share/elasticsearch/data
-  kibana:
-    image: docker.elastic.co/kibana/kibana:7.1.0
-    environment:
-      ELASTICSEARCH_HOSTS: http://elastic:9200
-      XPACK_SECURITY_ENABLED: 'false'
-    ports:
-      - 5601:5601
   neo4j:
     image: neo4j
     volumes:
@@ -27,3 +20,14 @@ services:
       - 7687:7687
     environment:
       - NEO4J_AUTH=neo4j/test
+  flask:
+    image: ipublica
+    build:
+      context: ./ipublica/
+      dockerfile: Dockerfile
+    ports:
+      - 5000:5000
+    env_file:
+      - ./ipublica/.env
+    volumes:
+      - ./ipublica/:/src/
