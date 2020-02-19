@@ -1,5 +1,4 @@
 import datetime
-from typing import List
 
 
 class DatabaseInterface:
@@ -9,14 +8,14 @@ class DatabaseInterface:
     def save_day_job(
         self,
         objective_day: datetime.datetime,
-        bidding_list: List[str]
+        bidding_list: list
     ) -> None:
         raise NotImplementedError
 
     def get_pending_bidding_list(
         self,
         objective_day: datetime.datetime
-    ) -> List[str]:
+    ) -> list:
         raise NotImplementedError
 
     def mark_bidding(self, bidding_id: str) -> None:
