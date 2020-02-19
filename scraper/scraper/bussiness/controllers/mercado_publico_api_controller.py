@@ -4,6 +4,7 @@ import logging
 from scraper.bussiness.interfaces.api_data_interface import APIDataInterface
 from scraper.bussiness.interfaces.database_interface import DatabaseInterface
 from scraper.bussiness.interfaces.json_data_interface import JsonDataInterface
+from scraper.bussiness.parsers.api_parser import APIParser
 
 logger = logging.getLogger(__name__)
 
@@ -14,7 +15,7 @@ class MercadoPublicoAPIController:
         database_repository: DatabaseInterface,
         api_data_repository: APIDataInterface,
         json_data_respository: JsonDataInterface,
-        api_parser,
+        api_parser: APIParser,
     ):
         self.database_repository = database_repository
         self.api_data_repository = api_data_repository
