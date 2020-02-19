@@ -1,5 +1,6 @@
 import datetime
 import logging
+from time import sleep
 
 from scraper.bussiness.interfaces.api_data_interface import APIDataInterface
 from scraper.bussiness.interfaces.database_interface import DatabaseInterface
@@ -21,6 +22,7 @@ class MercadoPublicoAPIController:
         self.api_data_repository = api_data_repository
         self.parser = api_parser
         self.json_data_respository = json_data_respository
+        self.time_until_next_request = 5.0
 
     def run_day(self, objective_day: datetime.datetime):
         logger.debug(
@@ -40,7 +42,7 @@ class MercadoPublicoAPIController:
             json, status_code = self.api_data_repository.get_bidding(
                 bidding_id)
         bidding = self.parser.parse_bidding(json)
-        self.json_data_respository.save_bidding(objective_day, bidding)
+        self.json_data_respository.save_bidding(bidding)
         self.database_repository.mark_bidding(bidding_id)
 
     def main(self, objective_day: datetime.datetime):
@@ -49,10 +51,6 @@ class MercadoPublicoAPIController:
             if not self.database_repository.day_scraped(objective_day):
                 self.run_day(objective_day)
             logger.debug('Bidding list obtained, stating bidding items fetch')
-            for (
-                bidding_id in
-                self.database_repository.get_pending_bidding_list(
-                    objective_day)
-            ):
+            for bidding_id in self.database_repository.get_pending_bidding_list(objective_day):
                 self.run_bidding(bidding_id)
             objective_day += datetime.timedelta(days=1)
