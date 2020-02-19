@@ -1,4 +1,5 @@
 from scraper.bussiness.interfaces.database_interface import DatabaseInterface
+from scraper.bussiness.interfaces.api_data_interface import APIDataInterface
 
 import datetime
 import logging
@@ -11,9 +12,9 @@ class MercadoPublicoAPIController:
     def __init__(
         self,
         database_repository: DatabaseInterface,
-        api_data_repository,
+        api_data_repository: APIDataInterface,
+        json_data_respository,
         api_parser,
-        json_data_respository
     ):
         self.database_repository = database_repository
         self.api_data_repository = api_data_repository
