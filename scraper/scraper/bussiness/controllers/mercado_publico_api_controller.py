@@ -1,9 +1,9 @@
-from scraper.bussiness.interfaces.database_interface import DatabaseInterface
-from scraper.bussiness.interfaces.api_data_interface import APIDataInterface
-
 import datetime
 import logging
 
+from scraper.bussiness.interfaces.api_data_interface import APIDataInterface
+from scraper.bussiness.interfaces.database_interface import DatabaseInterface
+from scraper.bussiness.interfaces.json_data_interface import JsonDataInterface
 
 logger = logging.getLogger(__name__)
 
@@ -13,7 +13,7 @@ class MercadoPublicoAPIController:
         self,
         database_repository: DatabaseInterface,
         api_data_repository: APIDataInterface,
-        json_data_respository,
+        json_data_respository: JsonDataInterface,
         api_parser,
     ):
         self.database_repository = database_repository
@@ -39,7 +39,7 @@ class MercadoPublicoAPIController:
             json, status_code = self.api_data_repository.get_bidding(
                 bidding_id)
         bidding = self.parser.parse_bidding(json)
-        self.json_data_respository.save_bidding(objective_day, bidding_id)
+        self.json_data_respository.save_bidding(objective_day, bidding)
         self.database_repository.mark_bidding(bidding_id)
 
     def main(self, objective_day: datetime.datetime):
