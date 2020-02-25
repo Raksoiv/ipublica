@@ -2,8 +2,8 @@ import datetime
 
 
 class APIDataInterface:
-    def get_day(objective_day: datetime.datetime) -> tuple:
+    def get_day(self, objective_day: datetime.datetime) -> tuple:
         raise NotImplementedError
 
-    def get_bidding(bidding_id: str) -> dict:
+    def get_bidding(self, bidding_id: str) -> dict:
         raise NotImplementedError
