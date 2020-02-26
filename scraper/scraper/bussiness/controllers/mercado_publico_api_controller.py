@@ -16,11 +16,10 @@ class MercadoPublicoAPIController:
         database_repository: DatabaseInterface,
         api_data_repository: APIDataInterface,
         json_data_respository: JsonDataInterface,
-        api_parser: APIParser,
     ):
         self.database_repository = database_repository
         self.api_data_repository = api_data_repository
-        self.parser = api_parser
+        self.parser = APIParser()
         self.json_data_respository = json_data_respository
         self.time_until_next_request = 5.0
 
@@ -30,7 +29,8 @@ class MercadoPublicoAPIController:
         status_code = None
         while status_code != 200:
             sleep(self.time_until_next_request)
-            json, status_code = self.api_data_repository.get_day(objective_day)
+            status_code, json = self.api_data_repository.get_day(objective_day)
+            logger.debug(f'status_code: {status_code}')
         bidding_list = self.parser.parse_day(json)
         self.database_repository.save_day_job(objective_day, bidding_list)
 
@@ -39,18 +39,22 @@ class MercadoPublicoAPIController:
         status_code = None
         while status_code != 200:
             sleep(self.time_until_next_request)
-            json, status_code = self.api_data_repository.get_bidding(
+            status_code, json = self.api_data_repository.get_bidding(
                 bidding_id)
+            logger.debug(f'status_code: {status_code}')
         bidding = self.parser.parse_bidding(json)
         self.json_data_respository.save_bidding(bidding)
         self.database_repository.mark_bidding(bidding_id)
 
     def main(self, objective_day: datetime.datetime):
         logger.info('MercadoPublicoAPIController stating...')
-        while objective_day <= datetime.date.today():
+        while objective_day <= datetime.datetime.today():
             if not self.database_repository.day_scraped(objective_day):
                 self.run_day(objective_day)
             logger.debug('Bidding list obtained, stating bidding items fetch')
-            for bidding_id in self.database_repository.get_pending_bidding_list(objective_day):
+            for bidding_id in (
+                self.database_repository.get_pending_bidding_list(
+                    objective_day)
+            ):
                 self.run_bidding(bidding_id)
             objective_day += datetime.timedelta(days=1)
