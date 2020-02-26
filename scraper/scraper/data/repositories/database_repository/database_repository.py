@@ -1,6 +1,7 @@
 import datetime
 
 from scraper.bussiness.interfaces import DatabaseInterface
+from scraper import logger
 
 from . import models
 
@@ -28,11 +29,13 @@ class DatabaseRepository(DatabaseInterface):
     ) -> list:
         day_job = models.DayJob.select().where(
             models.DayJob.objective_date == objective_day)
-        return list(
+        return [
+            bidding.bidding_id
+            for bidding in
             models.Bidding.select().where(
                 models.Bidding.day_job == day_job).where(
-                    models.Bidding.finished == False)
-        )
+                    models.Bidding.finished == 0)
+        ]
 
     def mark_bidding(self, bidding_id: str) -> None:
         bidding = models.Bidding.get(models.Bidding.bidding_id == bidding_id)

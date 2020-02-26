@@ -13,6 +13,7 @@ class APIDataRepository(APIDataInterface):
 
     def request_api(self, params={}):
         params['ticket'] = self.API_TOKEN
+        params['estado'] = 'adjudicada'
         response = requests.get(self.API_URL, params)
 
         return response.status_code, response.text
