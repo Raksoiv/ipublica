@@ -1,7 +1,6 @@
 import datetime
 
 from scraper.bussiness.interfaces import DatabaseInterface
-from scraper import logger
 
 from . import models
 
