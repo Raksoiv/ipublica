@@ -1,2 +1,3 @@
 from .database_repository import DatabaseRepository
 from .api_data_repository import APIDataRepository
+from .json_data_repository import JsonDataRepository
