@@ -1,33 +1,10 @@
 version: '3'
+
 services:
-  elastic:
-    image: elasticsearch:7.1.0
-    ports:
-      - 9200:9200
-      - 9300:9300
-    environment:
-      - discovery.type=single-node
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-    volumes:
-      - ./esdata:/usr/share/elasticsearch/data
-  neo4j:
-    image: neo4j
-    volumes:
-      - ./:/src
-      - ./neodata:/data
-    ports:
-      - 7474:7474
-      - 7687:7687
-    environment:
-      - NEO4J_AUTH=neo4j/test
-  flask:
-    image: ipublica
+  scraper:
     build:
-      context: ./ipublica/
+      context: ./scraper
       dockerfile: Dockerfile
-    ports:
-      - 5000:5000
-    env_file:
-      - ./ipublica/.env
+    command: bash scripts/run-scraper.sh
     volumes:
-      - ./ipublica/:/src/
+      - ./scraper_data:/src/data

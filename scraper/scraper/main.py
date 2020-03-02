@@ -17,7 +17,7 @@ def main():
         database_repository=database_repository,
         api_data_repository=api_data_repository,
         json_data_respository=json_data_respository,)
-    mercado_publico_api_controller.main(datetime.datetime(2020, 2, 25))
+    mercado_publico_api_controller.main(datetime.datetime(2019, 1, 1))
 
 
 if __name__ == '__main__':

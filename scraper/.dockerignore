@@ -134,9 +134,5 @@ dmypy.json
 # Database files
 *.db
 
-# Project data folders
-old_data/
-licitaciones/
-neo4j_data/
-elastic_data/
-scraper_data/
+# Data folders
+./data/
