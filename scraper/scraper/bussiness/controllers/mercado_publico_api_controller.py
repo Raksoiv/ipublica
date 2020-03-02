@@ -26,23 +26,25 @@ class MercadoPublicoAPIController:
     def run_day(self, objective_day: datetime.datetime):
         logger.debug(
             f'Day not scraped ({objective_day}), begining fetcher job')
-        status_code = None
-        while status_code != 200:
+        bidding_list = None
+        while bidding_list is None:
             sleep(self.time_until_next_request)
             status_code, json = self.api_data_repository.get_day(objective_day)
             logger.debug(f'status_code: {status_code}')
-        bidding_list = self.parser.parse_day(json)
+            if status_code == 200:
+                bidding_list = self.parser.parse_day(json)
         self.database_repository.save_day_job(objective_day, bidding_list)
 
     def run_bidding(self, bidding_id: str):
         logger.debug(f'Obtaining bidding_id: {bidding_id}')
-        status_code = None
-        while status_code != 200:
+        bidding = None
+        while bidding is None:
             sleep(self.time_until_next_request)
             status_code, json = self.api_data_repository.get_bidding(
                 bidding_id)
             logger.debug(f'status_code: {status_code}')
-        bidding = self.parser.parse_bidding(json)
+            if status_code == 200:
+                bidding = self.parser.parse_bidding(json)
         self.json_data_respository.save_bidding(bidding)
         self.database_repository.mark_bidding(bidding_id)
 
