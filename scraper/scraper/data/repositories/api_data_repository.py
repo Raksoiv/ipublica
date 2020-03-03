@@ -1,5 +1,6 @@
 import requests
 import datetime
+from time import sleep
 
 from scraper.bussiness.interfaces import APIDataInterface
 
@@ -14,7 +15,13 @@ class APIDataRepository(APIDataInterface):
     def request_api(self, params={}):
         params['ticket'] = self.API_TOKEN
         params['estado'] = 'adjudicada'
-        response = requests.get(self.API_URL, params)
+        while True:
+            try:
+                response = requests.get(self.API_URL, params)
+                break
+            except requests.exceptions.ConnectionError:
+                sleep(5)
+                continue
 
         return response.status_code, response.text
 

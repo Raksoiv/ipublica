@@ -2,7 +2,9 @@ from datetime import datetime
 
 import peewee
 
-db = peewee.SqliteDatabase('ipublica.db')
+from scraper import settings
+
+db = peewee.SqliteDatabase(settings.DATABASE_URL)
 
 
 class DayJob(peewee.Model):
