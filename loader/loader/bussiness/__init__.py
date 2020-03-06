@@ -1,0 +1,1 @@
+from .mercado_publico_controller import MercadoPublicoController
