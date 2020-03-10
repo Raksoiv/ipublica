@@ -7,4 +7,11 @@ services:
       dockerfile: Dockerfile
     command: bash scripts/run-scraper.sh
     volumes:
-      - ./scraper_data:/src/data
+      - ./ipublica_data/scraper:/src/data
+  neo4j:
+    image: neo4j:4.0.1
+    ports:
+      - 7474:7474
+      - 7687:7687
+    volumes:
+      - ./ipublica_data/neo4j:/data
