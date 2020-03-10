@@ -1,5 +1,0 @@
-neo4j-driver==1.6.1
-requests==2.19.1
-peewee==3.8.1
-Click==7.0
-elasticsearch==7.0.0
