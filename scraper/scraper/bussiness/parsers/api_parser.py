@@ -73,9 +73,9 @@ class APIParser:
                     'urlActa': bidding_data['Adjudicacion']['UrlActa'],
                 })
 
-            bidding_doc['Items'] = []
+            bidding_doc['items'] = []
             for item in bidding_data['Items']['Listado']:
-                bidding_doc['Items'].append({
+                item_data = {
                     'codigoProducto': item['CodigoProducto'],
                     'codigoCategoria': item['CodigoCategoria'],
                     'categoria': item['Categoria'],
@@ -83,15 +83,16 @@ class APIParser:
                     'descripcion': item['Descripcion'],
                     'unidadMedida': item['UnidadMedida'],
                     'cantidad': item['Cantidad'],
-                })
+                }
                 if item['Adjudicacion'] is not None:
-                    bidding_doc['Items'].append({
+                    item_data.update({
                         'rutProveedor': item['Adjudicacion']['RutProveedor'],
                         'nombreProveedor':
                             item['Adjudicacion']['NombreProveedor'],
                         'cantidad': item['Adjudicacion']['Cantidad'],
                         'montoUnitario': item['Adjudicacion']['MontoUnitario'],
                     })
+                bidding_doc['items'].append(item_data)
         except TypeError:
             logger.error('Couldn\'t parse JSON response')
             logging.error(json_str)

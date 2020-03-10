@@ -3,10 +3,10 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='Fetcher',
+    name='scraper',
     version='0.1',
-    description='Scraper',
+    description='scraper for the ipublica project',
     author='Oscar Rencoret',
     author_email='o.rencoret@gmail.com',
-    packages=find_packages(where='./scrpaer'),
+    packages=find_packages(),
 )

@@ -7,4 +7,4 @@ DATA_PATH = getenv('DATA_PATH', os.path.join(BASE_PATH, 'data'))
 DATABASE_URL = getenv('DATABASE_URL', os.path.join(
     BASE_PATH,
     'data',
-    'ipublica.db'))
+    'scraper.db'))
