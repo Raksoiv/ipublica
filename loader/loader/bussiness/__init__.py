@@ -1,1 +1,4 @@
 from .mercado_publico_controller import MercadoPublicoController
+from .input_data_interface import InputDataInterface
+from .database_interface import DatabaseInterface
+from .output_data_interface import OutputDataInterface
