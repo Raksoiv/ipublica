@@ -12,7 +12,10 @@ class JsonDataInput(InputDataInterface):
     def list_data_ids(self) -> list:
         return list(map(
             lambda name: '.'.join(name.split('.')[:-1]),
-            os.listdir(self.scraper_data_path)
+            filter(
+                lambda f: True if 'scraper' not in f else False,
+                os.listdir(self.scraper_data_path)
+            )
         ))
 
     def get_data(self, data_id: str) -> dict:

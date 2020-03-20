@@ -93,11 +93,12 @@ class MercadoPublicoController:
             })
 
             # Add Proveedor node
-            nodes.append({
-                'id': item['rutProveedor'],
-                'label': 'Proveedor',
-                'nombreProveedor': item['nombreProveedor'],
-            })
+            if 'rutProveedor' in item.keys():
+                nodes.append({
+                    'id': item['rutProveedor'],
+                    'label': 'Proveedor',
+                    'nombreProveedor': item['nombreProveedor'],
+                })
 
         return nodes
 
@@ -153,20 +154,24 @@ class MercadoPublicoController:
         })
 
         for item in data_dict['items']:
-            relations.append({
-                'start_id': item['rutProveedor'],
-                'start_label': 'Proveedor',
-                'relation': 'ADJUDICO',
-                'end_id': data_dict['codigoExterno'],
-                'end_label': 'Licitacion',
-            })
-            relations.append({
-                'start_id': item['rutProveedor'],
-                'start_label': 'Proveedor',
-                'relation': 'VENDIO',
-                'end_id': item['codigoProducto'],
-                'end_label': 'Item',
-            })
+            if 'rutProveedor' in item.keys():
+                relations.append({
+                    'start_id': item['rutProveedor'],
+                    'start_label': 'Proveedor',
+                    'relation': 'ADJUDICO',
+                    'end_id': data_dict['codigoExterno'],
+                    'end_label': 'Licitacion',
+                })
+                relations.append({
+                    'start_id': item['rutProveedor'],
+                    'start_label': 'Proveedor',
+                    'relation': 'VENDIO',
+                    'end_id': item['codigoProducto'],
+                    'end_label': 'Item',
+                    'unidadMedida': item['unidadMedida'],
+                    'cantidad': item['cantidad'],
+                    'montoUnitario': item['montoUnitario'],
+                })
             relations.append({
                 'start_id': item['codigoProducto'],
                 'start_label': 'Item',
@@ -195,7 +200,9 @@ class MercadoPublicoController:
 
     def main(self):
         while True:
+            print('loop started')
             for data_id in self.input.list_data_ids():
                 self.send_neo4j(data_id)
                 self.send_elastic(data_id)
+            print('loop ended')
             time.sleep(30 * 60)
