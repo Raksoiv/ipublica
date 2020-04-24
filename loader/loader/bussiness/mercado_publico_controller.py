@@ -17,6 +17,7 @@ class MercadoPublicoController:
         self.neo4j = neo4j
         self.elastic = elastic
         self.database = database
+        self.nodes_inserted = 0
 
     def get_neo4j_nodes(self, data_dict: dict) -> list:
         nodes = []
@@ -185,8 +186,10 @@ class MercadoPublicoController:
     def send_neo4j(self, data_id: str):
         if self.database.check_false(data_id, 'neo4j'):
             data_dict = self.input.get_data(data_id)
+            nodes = self.get_neo4j_nodes(data_dict)
+            self.nodes_inserted += len(nodes)
             neo4j_data = {
-                'nodes': self.get_neo4j_nodes(data_dict),
+                'nodes': nodes,
                 'relations': self.get_neo4j_relations(data_dict),
             }
             self.neo4j.save(neo4j_data)
@@ -198,11 +201,9 @@ class MercadoPublicoController:
             self.elastic.save(elastic_doc)
             self.database.mark_true(data_id, 'elastic')
 
-    def main(self):
-        while True:
-            print('loop started')
-            for data_id in self.input.list_data_ids():
-                self.send_neo4j(data_id)
-                self.send_elastic(data_id)
-            print('loop ended')
-            time.sleep(30 * 60)
+    def main(self, max_nodes=None):
+        for data_id in self.input.list_data_ids():
+            if max_nodes and self.nodes_inserted > max_nodes:
+                return
+            self.send_neo4j(data_id)
+            self.send_elastic(data_id)
