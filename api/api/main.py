@@ -1,4 +1,5 @@
-from api import start_server
+from api.output import APIServer
 
 if __name__ == '__main__':
-    start_server()
+    api_server = APIServer()
+    api_server.start_server()
